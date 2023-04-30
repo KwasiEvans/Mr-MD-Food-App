@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/home/food_body.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/widgets/big_text.dart';
 import 'package:frontend/widgets/small_text.dart';
@@ -55,6 +56,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
           ),
+          const FoodPageBody(),
         ],
       ),
     );
