@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/utils/colors.dart';
+import 'package:frontend/widgets/big_text.dart';
+import 'package:frontend/widgets/icon_and_text.dart';
+import 'package:frontend/widgets/small_text.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
@@ -27,10 +31,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       children: [
         Container(
           height: 220,
-          margin: const EdgeInsets.only(left: 5, right: 5),
+          margin: const EdgeInsets.only(left: 10, right: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
+            color: index.isEven
+                ? const Color(0xFF69c5df)
+                : const Color(0xFF9294cc),
             image: DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage("assets/images/food0.jpg"),
@@ -40,11 +46,63 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: 140,
-            margin: const EdgeInsets.only(left: 30, right: 30, bottom: 15),
+            height: 120,
+            margin: const EdgeInsets.only(left: 30, right: 30, bottom: 30),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: Colors.white,
+            ),
+            child: Container(
+              padding: EdgeInsets.only(top: 15, left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BigText(text: "MD's BERGGA"),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Wrap(
+                        children: List.generate(
+                            5,
+                            (index) => Icon(
+                                  Icons.star,
+                                  color: AppColors.yellowColor,
+                                  size: 15,
+                                )),
+                      ),
+                      const SizedBox(width: 10),
+                      SmallText(text: "4.7"),
+                      const SizedBox(width: 10),
+                      SmallText(text: "1289"),
+                      const SizedBox(width: 1),
+                      SmallText(text: "comments")
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      IconAndTextWidget(
+                        icon: Icons.circle_sharp,
+                        text: "Normal",
+                        iconColor: AppColors.iconColor1,
+                      ),
+                      IconAndTextWidget(
+                        icon: Icons.location_on,
+                        text: "3.4km",
+                        iconColor: AppColors.mainColor,
+                      ),
+                      IconAndTextWidget(
+                        icon: Icons.access_time_rounded,
+                        text: "34min",
+                        iconColor: AppColors.iconColor1,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
