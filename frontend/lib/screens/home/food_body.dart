@@ -53,6 +53,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           decorator: DotsDecorator(
               size: const Size.square(9.0),
               activeSize: const Size(18.0, 9.0),
+              activeColor: AppColors.mainColor,
               activeShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0))),
         )
@@ -98,7 +99,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   : const Color(0xFF9294cc),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage("assets/images/food0.jpg"),
+                image: AssetImage("assets/images/food1.jpeg"),
               ),
             ),
           ),
