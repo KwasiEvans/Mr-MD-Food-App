@@ -86,14 +86,17 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         Container(
           height: 900,
           child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 10,
             itemBuilder: (context, index) {
               return Container(
                 margin: EdgeInsets.only(
-                    left: Dimensions.width20, right: Dimensions.width20),
+                    left: Dimensions.width20,
+                    right: Dimensions.width20,
+                    bottom: Dimensions.height10),
                 child: Row(
                   children: [
+                    // This show the image
                     Container(
                       width: 120,
                       height: 120,
@@ -102,10 +105,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             BorderRadius.circular(Dimensions.radius20),
                         color: Colors.white38,
                         image: const DecorationImage(
-                          image: AssetImage("assets/images/food1.jpeg"),
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/images/food0.jpg"),
                         ),
                       ),
                     ),
+                    // Text container
                   ],
                 ),
               );

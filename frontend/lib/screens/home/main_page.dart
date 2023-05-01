@@ -15,7 +15,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    print("current height is " + MediaQuery.of(context).size.height.toString());
     return Scaffold(
       body: Column(
         children: [
@@ -64,9 +63,9 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
           // This is showing the body
-          Expanded(
+          const Expanded(
             child: SingleChildScrollView(
-              child: const FoodPageBody(),
+              child: FoodPageBody(),
             ),
           )
         ],
