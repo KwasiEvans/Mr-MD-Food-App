@@ -4,6 +4,7 @@ import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_column.dart';
 import 'package:frontend/widgets/app_icon.dart';
 import 'package:frontend/widgets/big_text.dart';
+import 'package:frontend/widgets/expendable_text.dart';
 import 'package:frontend/widgets/icon_and_text.dart';
 import 'package:frontend/widgets/small_text.dart';
 
@@ -16,6 +17,7 @@ class PopularFoodDtails extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+          // Background image
           Positioned(
             left: 0,
             right: 0,
@@ -32,6 +34,7 @@ class PopularFoodDtails extends StatelessWidget {
               ),
             ),
           ),
+          // Icon Widget
           Positioned(
             top: Dimensions.height45,
             left: Dimensions.width20,
@@ -43,6 +46,7 @@ class PopularFoodDtails extends StatelessWidget {
                   AppIcon(icon: Icons.shopping_cart_outlined),
                 ]),
           ),
+          // Details of food
           Positioned(
             left: 0,
             right: 0,
@@ -64,21 +68,18 @@ class PopularFoodDtails extends StatelessWidget {
                   children: [
                     const AppColumn(text: "MD's Pizza"),
                     SizedBox(height: Dimensions.height20),
-                    DecoratedBox(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: AppColors.mainColor,
-                            width:
-                                1.0, // Adjust the thickness of the line as needed
-                          ),
-                        ),
+                    BigText(text: "Details"),
+                    SizedBox(height: Dimensions.height20),
+                    const Expanded(
+                      child: SingleChildScrollView(
+                        child: ExpandableTextWidget(
+                            text:
+                                "Pizza is a popular Italian dish that consists of a flatbread base, tomato sauce, cheese, and a variety of toppings.\n\nThe base of a pizza is traditionally made from wheat flour, water, salt, and yeast, which is rolled out into a thin, circular shape.\n\nThe tomato sauce is typically made from ripe tomatoes, garlic, olive oil, and various herbs and spices, and is spread evenly over the pizza base.\n\nThe most common type of cheese used on pizza is mozzarella, although other types such as cheddar, Parmesan, and feta are also used.\n\nToppings on a pizza can vary widely, and may include meats such as pepperoni, sausage, ham, and bacon, as well as vegetables such as mushrooms, onions, peppers, and olives."),
                       ),
-                      child: BigText(text: "Details"),
-                    ),
+                    )
                   ]),
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: Container(
