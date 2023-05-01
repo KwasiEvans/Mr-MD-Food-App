@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/screens/home/food_body.dart';
 import 'package:frontend/utils/colors.dart';
+import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/big_text.dart';
 import 'package:frontend/widgets/small_text.dart';
 
@@ -20,8 +21,10 @@ class _MainPageState extends State<MainPage> {
         children: [
           // This is showing the header
           Container(
-            margin: EdgeInsets.only(top: 45, bottom: 15),
-            padding: EdgeInsets.only(left: 20, right: 20),
+            margin: EdgeInsets.only(
+                top: Dimensions.height45, bottom: Dimensions.height15),
+            padding: EdgeInsets.only(
+                left: Dimensions.width20, right: Dimensions.width20),
             child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,22 +38,24 @@ class _MainPageState extends State<MainPage> {
                       Row(
                         children: [
                           SmallText(text: "Kasoa", color: Colors.black54),
-                          Icon(Icons.arrow_drop_down_rounded)
+                          const Icon(Icons.arrow_drop_down_rounded)
                         ],
                       ),
                     ],
                   ),
                   Center(
                     child: Container(
-                      width: 45,
-                      height: 45,
+                      width: Dimensions.height45,
+                      height: Dimensions.height45,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius15),
+                        color: AppColors.mainColor,
+                      ),
                       child: Icon(
                         Icons.search,
                         color: Colors.white,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: AppColors.mainColor,
+                        size: Dimensions.iconSize24,
                       ),
                     ),
                   )
