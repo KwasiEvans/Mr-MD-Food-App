@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/utils/colors.dart';
+import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/big_text.dart';
 import 'package:frontend/widgets/icon_and_text.dart';
 import 'package:frontend/widgets/small_text.dart';
@@ -17,7 +18,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   var _currentPageValue = 0.0;
   double _scaleFactor = 0.8;
-  double _height = 220;
+  // ignore: prefer_final_fields
+  double _height = Dimensions.pageViewContainer;
 
   @override
   void initState() {
@@ -39,7 +41,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         Container(
-          height: 320,
+          height: Dimensions.pageView,
           child: PageView.builder(
               controller: pageController,
               itemCount: 5,
@@ -47,7 +49,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 return _buildPageItem(position);
               }),
         ),
-        new DotsIndicator(
+        DotsIndicator(
           dotsCount: 5,
           position: _currentPageValue,
           decorator: DotsDecorator(
@@ -62,7 +64,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   }
 
   Widget _buildPageItem(int index) {
-    Matrix4 matrix = new Matrix4.identity();
+    Matrix4 matrix = Matrix4.identity();
     if (index == _currentPageValue.floor()) {
       var currScale = 1 - (_currentPageValue - index) * (1 - _scaleFactor);
       var currtrans = _height * (1 - currScale) / 2;
@@ -90,14 +92,14 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       child: Stack(
         children: [
           Container(
-            height: 220,
+            height: Dimensions.pageViewContainer,
             margin: const EdgeInsets.only(left: 10, right: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: index.isEven
                   ? const Color(0xFF69c5df)
                   : const Color(0xFF9294cc),
-              image: DecorationImage(
+              image: const DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage("assets/images/food1.jpeg"),
               ),
@@ -138,7 +140,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         Wrap(
                           children: List.generate(
                               5,
-                              (index) => Icon(
+                              (index) => const Icon(
                                     Icons.star,
                                     color: AppColors.yellowColor,
                                     size: 15,
