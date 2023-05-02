@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'MR MD',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RecomendedFoodDetail(),
+      home: const RecomendedFoodDetail(),
     );
   }
 }
