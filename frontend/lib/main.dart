@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/screens/food/populer_food_detials.dart';
 import 'package:frontend/screens/food/recomended_food_details.dart';
-import 'package:frontend/screens/home/main_page.dart';
 import 'package:get/get.dart';
+import 'helper/dependencies.dart' as dep;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const MyApp());
 }
 
