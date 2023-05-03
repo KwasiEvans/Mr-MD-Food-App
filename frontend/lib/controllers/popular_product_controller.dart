@@ -16,7 +16,7 @@ class PopularProductController extends GetxController {
       _popularProductList = [];
       _popularProductList.addAll(Product.fromJson(response.body).products);
       // ignore: avoid_print
-      print(_popularProductList);
+      // print(_popularProductList);
       update();
     } else {
       print("404 Error, fix your burg");

@@ -1,11 +1,14 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/controllers/popular_product_controller.dart';
+import 'package:frontend/models/products_model.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_column.dart';
 import 'package:frontend/widgets/big_text.dart';
 import 'package:frontend/widgets/icon_and_text.dart';
 import 'package:frontend/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
@@ -43,25 +46,36 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         // Slider section
-        Container(
-          height: Dimensions.pageView,
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: 5,
-              itemBuilder: (context, position) {
-                return _buildPageItem(position);
-              }),
+        GetBuilder<PopularProductController>(
+          builder: (popularProducts) {
+            return Container(
+              height: Dimensions.pageView,
+              child: PageView.builder(
+                  controller: pageController,
+                  itemCount: popularProducts.popularProductList.length,
+                  itemBuilder: (context, position) {
+                    return _buildPageItem(
+                        position, popularProducts.popularProductList[position]);
+                  }),
+            );
+          },
         ),
         // progress dots
-        DotsIndicator(
-          dotsCount: 5,
-          position: _currentPageValue,
-          decorator: DotsDecorator(
-              size: const Size.square(9.0),
-              activeSize: const Size(18.0, 9.0),
-              activeColor: AppColors.mainColor,
-              activeShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0))),
+        GetBuilder<PopularProductController>(
+          builder: (popularProducts) {
+            return DotsIndicator(
+              dotsCount: popularProducts.popularProductList.isEmpty
+                  ? 1
+                  : popularProducts.popularProductList.length,
+              position: _currentPageValue,
+              decorator: DotsDecorator(
+                  size: const Size.square(9.0),
+                  activeSize: const Size(18.0, 9.0),
+                  activeColor: AppColors.mainColor,
+                  activeShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0))),
+            );
+          },
         ),
         // Popular food
         SizedBox(height: Dimensions.height30),
@@ -84,7 +98,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ],
           ),
         ),
-
+        SizedBox(height: Dimensions.height30),
         ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -170,7 +184,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int index) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = Matrix4.identity();
     if (index == _currentPageValue.floor()) {
       var currScale = 1 - (_currentPageValue - index) * (1 - _scaleFactor);
