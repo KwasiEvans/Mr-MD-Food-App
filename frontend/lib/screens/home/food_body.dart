@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/controllers/popular_product_controller.dart';
 import 'package:frontend/models/products_model.dart';
+import 'package:frontend/utils/app_constants.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_column.dart';
@@ -221,9 +222,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               color: index.isEven
                   ? const Color(0xFF69c5df)
                   : const Color(0xFF9294cc),
-              image: const DecorationImage(
+              image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage("assets/images/food1.jpeg"),
+                image: NetworkImage(
+                    AppConstants.BASE_URL + "/uploads/" + popularProduct.img!),
               ),
             ),
           ),
@@ -256,8 +258,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               child: Container(
                 padding: EdgeInsets.only(
                     top: Dimensions.height15, left: 15, right: 15),
-                child: const AppColumn(
-                  text: "MD's Pizza",
+                child: AppColumn(
+                  text: popularProduct.name!,
                 ),
               ),
             ),
