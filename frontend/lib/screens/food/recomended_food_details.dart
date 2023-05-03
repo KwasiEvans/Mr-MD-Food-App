@@ -26,7 +26,7 @@ class RecomendedFoodDetail extends StatelessWidget {
                     onTap: () {
                       Get.toNamed(RouteHelper.getInitial());
                     },
-                    child: AppIcon(icon: Icons.clear)),
+                    child: const AppIcon(icon: Icons.clear)),
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),

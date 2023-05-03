@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/controllers/popular_product_controller.dart';
 import 'package:frontend/routes/route_helper.dart';
+import 'package:frontend/utils/app_constants.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_column.dart';
@@ -9,10 +11,18 @@ import 'package:frontend/widgets/expendable_text.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDtails extends StatelessWidget {
-  const PopularFoodDtails({super.key});
+  int pageId;
+  PopularFoodDtails({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    // print("Page is id " + pageId.toString());
+    // print("product name is " + product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -24,13 +34,12 @@ class PopularFoodDtails extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               height: Dimensions.popularFoodImage,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    "assets/images/food1.jpeg",
-                  ),
-                ),
+                    fit: BoxFit.cover,
+                    image: NetworkImage(AppConstants.BASE_URL +
+                        AppConstants.UPLOAD_URL +
+                        product.img!)),
               ),
             ),
           ),
@@ -46,8 +55,8 @@ class PopularFoodDtails extends StatelessWidget {
                       onTap: () {
                         Get.toNamed(RouteHelper.getInitial());
                       },
-                      child: AppIcon(icon: Icons.arrow_back_ios)),
-                  AppIcon(icon: Icons.shopping_cart_outlined),
+                      child: const AppIcon(icon: Icons.arrow_back_ios)),
+                  const AppIcon(icon: Icons.shopping_cart_outlined),
                 ]),
           ),
           // Details of food
@@ -70,15 +79,13 @@ class PopularFoodDtails extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppColumn(text: "MD's Pizza"),
+                    AppColumn(text: product.name!),
                     SizedBox(height: Dimensions.height20),
                     BigText(text: "Details"),
                     SizedBox(height: Dimensions.height20),
-                    const Expanded(
+                    Expanded(
                       child: SingleChildScrollView(
-                        child: ExpandableTextWidget(
-                            text:
-                                "Pizza is a popular Italian dish that consists of a flatbread base, tomato sauce, cheese, and a variety of toppings.\n\nThe base of a pizza is traditionally made from wheat flour, water, salt, and yeast, which is rolled out into a thin, circular shape.\n\nThe tomato sauce is typically made from ripe tomatoes, garlic, olive oil, and various herbs and spices, and is spread evenly over the pizza base.\n\nThe most common type of cheese used on pizza is mozzarella, although other types such as cheddar, Parmesan, and feta are also used.\n\nToppings on a pizza can vary widely, and may include meats such as pepperoni, sausage, ham, and bacon, as well as vegetables such as mushrooms, onions, peppers, and olives."),
+                        child: ExpandableTextWidget(text: product.description!),
                       ),
                     )
                   ]),
@@ -130,7 +137,8 @@ class PopularFoodDtails extends StatelessWidget {
                   right: Dimensions.width20),
               // ignore: sort_child_properties_last
               child: BigText(
-                text: "GH₵150 | Add to cart",
+                // ignore: prefer_interpolation_to_compose_strings
+                text: ("GH₵${product.price!} | Add to cart"),
                 color: Colors.white,
               ),
               decoration: BoxDecoration(
