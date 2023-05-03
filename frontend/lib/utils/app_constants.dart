@@ -12,4 +12,7 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   // ignore: constant_identifier_names
   static const String TOKEN = "MDtoken";
+
+  // ignore: constant_identifier_names
+  static const String UPLOAD_URL = "/uploads/";
 }
