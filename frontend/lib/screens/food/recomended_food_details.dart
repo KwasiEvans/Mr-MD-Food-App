@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/controllers/recomended_product_controller.dart';
 import 'package:frontend/routes/route_helper.dart';
+import 'package:frontend/utils/app_constants.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_icon.dart';
@@ -8,10 +10,16 @@ import 'package:frontend/widgets/expendable_text.dart';
 import 'package:get/get.dart';
 
 class RecomendedFoodDetail extends StatelessWidget {
-  const RecomendedFoodDetail({super.key});
+  final int pageId;
+  const RecomendedFoodDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecomendedProductController>().recomendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -35,7 +43,8 @@ class RecomendedFoodDetail extends StatelessWidget {
               child: Container(
                 // ignore: sort_child_properties_last
                 child: Center(
-                    child: BigText(size: Dimensions.font26, text: "MD's Side")),
+                    child:
+                        BigText(size: Dimensions.font26, text: product.name)),
                 width: double.maxFinite,
                 padding: const EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
@@ -49,20 +58,18 @@ class RecomendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.mainColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset("assets/images/food0.jpg",
-                  width: double.maxFinite, fit: BoxFit.cover),
+              background: Image.network(
+                  AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img,
+                  width: double.maxFinite,
+                  fit: BoxFit.cover),
             ),
           ),
           SliverToBoxAdapter(
               child: Column(
             children: [
               Container(
-                child: ExpandableTextWidget(
-                    text:
-                        "Pizza is a popular Italian dish that consists of a flatbread base, tomato sauce, cheese, and a variety of toppings.\n\nThe base of a pizza is traditionally made from wheat flour, water, salt, and yeast, which is rolled out into a thin, circular shape.\n\nThe tomato sauce is typically made from ripe tomatoes, garlic, olive oil, and various herbs and spices, and is spread evenly over the pizza base.\n\nThe most common type of cheese used on pizza is mozzarella, although other types such as cheddar, Parmesan, and feta are also used.\n\nToppings on a pizza can vary widely, and may include meats such as pepperoni, sausage, ham, and bacon, as well as vegetables such as mushrooms, onions, peppers, and olives.\n\n"
-                        "Pizza is a popular Italian dish that consists of a flatbread base, tomato sauce, cheese, and a variety of toppings.\n\nThe base of a pizza is traditionally made from wheat flour, water, salt, and yeast, which is rolled out into a thin, circular shape.\n\nThe tomato sauce is typically made from ripe tomatoes, garlic, olive oil, and various herbs and spices, and is spread evenly over the pizza base.\n\nThe most common type of cheese used on pizza is mozzarella, although other types such as cheddar, Parmesan, and feta are also used.\n\nToppings on a pizza can vary widely, and may include meats such as pepperoni, sausage, ham, and bacon, as well as vegetables such as mushrooms, onions, peppers, and olives.\n\n"
-                        "Pizza is a popular Italian dish that consists of a flatbread base, tomato sauce, cheese, and a variety of toppings.\n\nThe base of a pizza is traditionally made from wheat flour, water, salt, and yeast, which is rolled out into a thin, circular shape.\n\nThe tomato sauce is typically made from ripe tomatoes, garlic, olive oil, and various herbs and spices, and is spread evenly over the pizza base.\n\nThe most common type of cheese used on pizza is mozzarella, although other types such as cheddar, Parmesan, and feta are also used.\n\nToppings on a pizza can vary widely, and may include meats such as pepperoni, sausage, ham, and bacon, as well as vegetables such as mushrooms, onions, peppers, and olives.\n\n"
-                        "Pizza is a popular Italian dish that consists of a flatbread base, tomato sauce, cheese, and a variety of toppings.\n\nThe base of a pizza is traditionally made from wheat flour, water, salt, and yeast, which is rolled out into a thin, circular shape.\n\nThe tomato sauce is typically made from ripe tomatoes, garlic, olive oil, and various herbs and spices, and is spread evenly over the pizza base.\n\nThe most common type of cheese used on pizza is mozzarella, although other types such as cheddar, Parmesan, and feta are also used.\n\nToppings on a pizza can vary widely, and may include meats such as pepperoni, sausage, ham, and bacon, as well as vegetables such as mushrooms, onions, peppers, and olives."),
+                // ignore: sort_child_properties_last
+                child: ExpandableTextWidget(text: product.description),
                 margin: EdgeInsets.only(
                     left: Dimensions.width20, right: Dimensions.width20),
               ),
@@ -88,7 +95,7 @@ class RecomendedFoodDetail extends StatelessWidget {
                     backgroundColor: AppColors.mainColor,
                     icon: Icons.remove),
                 BigText(
-                    text: "GH₵200 " + " X " + " 0",
+                    text: "GH₵${product.price!}  X  0",
                     color: AppColors.mainBlackColor,
                     size: Dimensions.font26),
                 const AppIcon(
@@ -137,7 +144,7 @@ class RecomendedFoodDetail extends StatelessWidget {
                       right: Dimensions.width20),
                   // ignore: sort_child_properties_last
                   child: BigText(
-                    text: "GH₵200 | Add to cart",
+                    text: ("GH₵${product.price!} | Add to cart"),
                     color: Colors.white,
                   ),
                   decoration: BoxDecoration(
