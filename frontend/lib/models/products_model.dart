@@ -1,36 +1,48 @@
 class Product {
-  int? totalSize;
-  int? typeId;
-  int? offset;
-  List<Products>? products;
-
-  Product({this.totalSize, this.typeId, this.offset, this.products});
+  int? _totalSize;
+  int? _typeId;
+  int? _offset;
+  late List<ProductModel> _products;
+  List<ProductModel> get products => _products;
+  
+  Product(
+      {required totalSize,
+      required typeId,
+      required offset,
+      required products}) {
+    _totalSize = totalSize;
+    _typeId = typeId;
+    _offset = offset;
+    _products = products;
+  }
 
   Product.fromJson(Map<String, dynamic> json) {
-    totalSize = json['total_size'];
-    typeId = json['type_id'];
-    offset = json['offset'];
+    _totalSize = json['total_size'];
+    _typeId = json['type_id'];
+    _offset = json['offset'];
     if (json['products'] != null) {
-      products = <Products>[];
+      _products = <ProductModel>[];
       json['products'].forEach((v) {
-        products!.add(new Products.fromJson(v));
+        _products.add(ProductModel.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['total_size'] = this.totalSize;
-    data['type_id'] = this.typeId;
-    data['offset'] = this.offset;
-    if (this.products != null) {
-      data['products'] = this.products!.map((v) => v.toJson()).toList();
+    // ignore: prefer_collection_literals
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['total_size'] = _totalSize;
+    data['type_id'] = _typeId;
+    data['offset'] = _offset;
+    // ignore: unnecessary_null_comparison
+    if (_products != null) {
+      data['products'] = _products.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Products {
+class ProductModel {
   int? id;
   String? name;
   String? description;
@@ -42,7 +54,7 @@ class Products {
   String? updatedAt;
   int? typeId;
 
-  Products(
+  ProductModel(
       {this.id,
       this.name,
       this.description,
@@ -54,7 +66,7 @@ class Products {
       this.updatedAt,
       this.typeId});
 
-  Products.fromJson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
@@ -68,17 +80,18 @@ class Products {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['price'] = this.price;
-    data['stars'] = this.stars;
-    data['img'] = this.img;
-    data['location'] = this.location;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['type_id'] = this.typeId;
+    // ignore: prefer_collection_literals
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = id;
+    data['name'] = name;
+    data['description'] = description;
+    data['price'] = price;
+    data['stars'] = stars;
+    data['img'] = img;
+    data['location'] = location;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['type_id'] = typeId;
     return data;
   }
 }
