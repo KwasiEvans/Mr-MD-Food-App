@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:frontend/data/repository/popular_product_repo.dart';
 import 'package:frontend/models/products_model.dart';
 import 'package:get/get.dart';
+import 'package:frontend/utils/colors.dart';
 
 class PopularProductController extends GetxController {
   final PopularProductRepo popularProductRepo;
@@ -41,6 +43,13 @@ class PopularProductController extends GetxController {
 
   int checkQuantity(int quantity) {
     if (quantity < 0) {
+      Get.snackbar("Item count", "You can not reduce more");
+      // ignore: unused_label
+      backgroundColor:
+      AppColors.mainColor;
+      // ignore: unused_label
+      colorText:
+      Colors.white;
       return 0;
     } else if (quantity > 20) {
       return 20;
