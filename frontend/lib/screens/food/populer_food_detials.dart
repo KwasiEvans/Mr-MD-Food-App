@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/routes/route_helper.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_column.dart';
 import 'package:frontend/widgets/app_icon.dart';
 import 'package:frontend/widgets/big_text.dart';
 import 'package:frontend/widgets/expendable_text.dart';
-import 'package:frontend/widgets/icon_and_text.dart';
-import 'package:frontend/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class PopularFoodDtails extends StatelessWidget {
   const PopularFoodDtails({super.key});
@@ -41,8 +41,12 @@ class PopularFoodDtails extends StatelessWidget {
             right: Dimensions.width20,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  AppIcon(icon: Icons.arrow_back_ios),
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getInitial());
+                      },
+                      child: AppIcon(icon: Icons.arrow_back_ios)),
                   AppIcon(icon: Icons.shopping_cart_outlined),
                 ]),
           ),
