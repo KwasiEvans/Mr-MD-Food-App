@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/controllers/cart_controller.dart';
 import 'package:frontend/data/repository/popular_product_repo.dart';
 import 'package:frontend/models/products_model.dart';
 import 'package:get/get.dart';
@@ -9,18 +10,19 @@ class PopularProductController extends GetxController {
   PopularProductController({required this.popularProductRepo});
   List<dynamic> _popularProductList = [];
   List<dynamic> get popularProductList => _popularProductList;
+  late CartController _cart;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
   int _quantity = 0;
   int get quantity => _quantity;
+  int _inCartItems = 0;
+  int get inCartItems => _inCartItems + _quantity;
 
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPopularProductList();
     if (response.statusCode == 200) {
-      // ignore: avoid_print
-      print("got products");
       _popularProductList = [];
       _popularProductList.addAll(Product.fromJson(response.body).products);
       // ignore: avoid_print
@@ -28,6 +30,7 @@ class PopularProductController extends GetxController {
       _isLoaded = true;
       update();
     } else {
+      // ignore: avoid_print
       print("404 Error, fix your burg");
     }
   }
@@ -52,9 +55,29 @@ class PopularProductController extends GetxController {
       Colors.white;
       return 0;
     } else if (quantity > 20) {
+      Get.snackbar(
+          "Item count", "Food Stock is not available for more than 20");
+      // ignore: unused_label
+      backgroundColor:
+      AppColors.mainColor;
+      // ignore: unused_label
+      colorText:
+      Colors.white;
       return 20;
     } else {
       return quantity;
     }
+  }
+
+  void initProduct(CartController cart) {
+    _quantity = 0;
+    _inCartItems = 0;
+    _cart = cart;
+
+    // get from storage set it _inCartItems
+  }
+
+  void addItem(ProductModel product) {
+    _cart.addItem(product, _quantity);
   }
 }

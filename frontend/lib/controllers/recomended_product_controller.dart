@@ -14,15 +14,12 @@ class RecomendedProductController extends GetxController {
   Future<void> getRecomendedProductList() async {
     Response response = await recomendedProductRepo.getRecomendedProductList();
     if (response.statusCode == 200) {
-      // ignore: avoid_print
-      print("got recomeded products");
       _recomendedProductList = [];
       _recomendedProductList.addAll(Product.fromJson(response.body).products);
-      // ignore: avoid_print
-      // print(_recomendedProductList);
       _isLoaded = true;
       update();
     } else {
+      // ignore: avoid_print
       print("404 Error, fix your burg on recomended");
     }
   }

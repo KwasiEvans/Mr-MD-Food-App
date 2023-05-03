@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/controllers/cart_controller.dart';
 import 'package:frontend/controllers/popular_product_controller.dart';
 import 'package:frontend/routes/route_helper.dart';
 import 'package:frontend/utils/app_constants.dart';
@@ -10,6 +11,7 @@ import 'package:frontend/widgets/big_text.dart';
 import 'package:frontend/widgets/expendable_text.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class PopularFoodDtails extends StatelessWidget {
   int pageId;
   PopularFoodDtails({
@@ -21,8 +23,7 @@ class PopularFoodDtails extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    // print("Page is id " + pageId.toString());
-    // print("product name is " + product.name.toString());
+    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
     return Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
