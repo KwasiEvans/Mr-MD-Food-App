@@ -1,3 +1,4 @@
+import 'package:frontend/screens/cart/cart_page.dart';
 import 'package:frontend/screens/food/populer_food_detials.dart';
 import 'package:frontend/screens/food/recomended_food_details.dart';
 import 'package:frontend/screens/home/main_page.dart';
@@ -7,11 +8,13 @@ class RouteHelper {
   static const String initial = "/";
   static const String popularFood = "/popular-food";
   static const String recomendedFood = "/recomended-food";
+  static const String cartPage = "/cart-page";
 
   static String getInitial() => initial;
   static String getPopularFood(int pageId) => '$popularFood?pageId=$pageId';
   static String getRecomendedFood(int pageId) =>
       '$recomendedFood?pageId=$pageId';
+  static String getCartPage() => '$cartPage';
 
   static List<GetPage> routes = [
     // Getting home page
@@ -35,6 +38,13 @@ class RouteHelper {
         return RecomendedFoodDetail(pageId: int.parse(pageId!));
       },
       transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: cartPage,
+      page: () {
+        return const CartPage();
+      },
+      transition: Transition.native,
     ),
   ];
 }
