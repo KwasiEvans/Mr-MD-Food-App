@@ -1,7 +1,8 @@
 import 'package:frontend/data/repository/cart_repo.dart';
 import 'package:frontend/models/products_model.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter/material.dart';
+import 'package:frontend/utils/colors.dart';
 import '../models/cart_model.dart';
 
 class CartController extends GetxController {
@@ -25,20 +26,30 @@ class CartController extends GetxController {
         );
       });
     } else {
-      _items.putIfAbsent(
-        product.id!,
-        () {
-          return CartModel(
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            img: product.img,
-            quantity: quantity,
-            isExist: true,
-            time: DateTime.now().toString(),
-          );
-        },
-      );
+      if (quantity > 0) {
+        _items.putIfAbsent(
+          product.id!,
+          () {
+            return CartModel(
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              img: product.img,
+              quantity: quantity,
+              isExist: true,
+              time: DateTime.now().toString(),
+            );
+          },
+        );
+      } else {
+        Get.snackbar("Item count", "Please add at least one item");
+        // ignore: unused_label
+        backgroundColor:
+        AppColors.mainColor;
+        // ignore: unused_label
+        colorText:
+        Colors.white;
+      }
     }
   }
 

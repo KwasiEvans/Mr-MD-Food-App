@@ -16,6 +16,7 @@ class PopularProductController extends GetxController {
   bool get isLoaded => _isLoaded;
 
   int _quantity = 0;
+
   int get quantity => _quantity;
   int _inCartItems = 0;
   int get inCartItems => _inCartItems + _quantity;
@@ -45,7 +46,7 @@ class PopularProductController extends GetxController {
   }
 
   int checkQuantity(int quantity) {
-    if (quantity < 0) {
+    if ((_inCartItems + quantity) < 0) {
       Get.snackbar("Item count", "You can not reduce more");
       // ignore: unused_label
       backgroundColor:
@@ -54,7 +55,7 @@ class PopularProductController extends GetxController {
       colorText:
       Colors.white;
       return 0;
-    } else if (quantity > 20) {
+    } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
           "Item count", "Food Stock is not available for more than 20");
       // ignore: unused_label
@@ -85,23 +86,24 @@ class PopularProductController extends GetxController {
   }
 
   void addItem(ProductModel product) {
-    if (_quantity > 0) {
-      _cart.addItem(product, _quantity);
-      _quantity = 0;
-      _cart.items.forEach((key, value) {
-        print("The id is " +
-            value.id.toString() +
-            " The quantity is " +
-            value.quantity.toString());
-      });
-    } else {
-      Get.snackbar("Item count", "Please add at least one item");
-      // ignore: unused_label
-      backgroundColor:
-      AppColors.mainColor;
-      // ignore: unused_label
-      colorText:
-      Colors.white;
-    }
+    // if (_quantity > 0) {
+    _cart.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
+    _cart.items.forEach((key, value) {
+      print("The id is " +
+          value.id.toString() +
+          " The quantity is " +
+          value.quantity.toString());
+    });
+    // } else {
+    //   Get.snackbar("Item count", "Please add at least one item");
+    //   // ignore: unused_label
+    //   backgroundColor:
+    //   AppColors.mainColor;
+    //   // ignore: unused_label
+    //   colorText:
+    //   Colors.white;
+    // }
   }
 }
