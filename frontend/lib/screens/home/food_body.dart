@@ -107,7 +107,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
         ),
         SizedBox(height: Dimensions.height30),
-        
+
         // Getting recomended food
         GetBuilder<RecomendedProductController>(
           builder: (recomendedProduct) {
@@ -177,12 +177,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                         SizedBox(
                                           height: Dimensions.height10,
                                         ),
-                                        SmallText(
-                                            text: recomendedProduct
-                                                .recomendedProductList[index]
-                                                .description),
-                                        SizedBox(
-                                          height: Dimensions.height10,
+                                        Expanded(
+                                          child: SmallText(
+                                              text: recomendedProduct
+                                                  .recomendedProductList[index]
+                                                  .description),
                                         ),
                                         Row(
                                           mainAxisAlignment:
@@ -254,7 +253,6 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         children: [
           GestureDetector(
             onTap: () {
-              
               Get.toNamed(RouteHelper.getPopularFood(index));
             },
             child: Container(
