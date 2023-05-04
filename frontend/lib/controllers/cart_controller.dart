@@ -10,9 +10,12 @@ class CartController extends GetxController {
   Map<int, CartModel> _items = {};
 
   void addItem(ProductModel product, int quantity) {
-    _items.putIfAbsent(
-      product.id!,
-      () => CartModel(
+    _items.putIfAbsent(product.id!, () {
+      print("adding item to cart" +
+          product.id!.toString() +
+          " quantity " +
+          quantity.toString());
+      return CartModel(
         id: product.id,
         name: product.name,
         price: product.price,
@@ -20,7 +23,7 @@ class CartController extends GetxController {
         quantity: quantity,
         isExist: true,
         time: DateTime.now().toString(),
-      ),
-    );
+      );
+    });
   }
 }
