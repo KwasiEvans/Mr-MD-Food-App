@@ -86,7 +86,6 @@ class PopularProductController extends GetxController {
   }
 
   void addItem(ProductModel product) {
-    // if (_quantity > 0) {
     _cart.addItem(product, _quantity);
     _quantity = 0;
     _inCartItems = _cart.getQuantity(product);
@@ -96,14 +95,10 @@ class PopularProductController extends GetxController {
           " The quantity is " +
           value.quantity.toString());
     });
-    // } else {
-    //   Get.snackbar("Item count", "Please add at least one item");
-    //   // ignore: unused_label
-    //   backgroundColor:
-    //   AppColors.mainColor;
-    //   // ignore: unused_label
-    //   colorText:
-    //   Colors.white;
-    // }
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
   }
 }

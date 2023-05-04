@@ -58,7 +58,37 @@ class PopularFoodDtails extends StatelessWidget {
                           Get.toNamed(RouteHelper.getInitial());
                         },
                         child: const AppIcon(icon: Icons.arrow_back_ios)),
-                    const AppIcon(icon: Icons.shopping_cart_outlined),
+                    GetBuilder<PopularProductController>(builder: (controller) {
+                      return Stack(
+                        children: [
+                          const AppIcon(icon: Icons.shopping_cart_outlined),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? const Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: 20,
+                                    iconColor: Colors.transparent,
+                                    backgroundColor: AppColors.mainColor,
+                                  ),
+                                )
+                              : Container(),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 4,
+                                  top: 4,
+                                  child: BigText(
+                                      text: Get.find<PopularProductController>()
+                                          .totalItems
+                                          .toString(),
+                                      size: 12,
+                                      color: Colors.white),
+                                )
+                              : Container(),
+                        ],
+                      );
+                    })
                   ]),
             ),
             // Details of food

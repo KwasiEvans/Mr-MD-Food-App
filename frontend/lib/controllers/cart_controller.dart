@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:frontend/data/repository/cart_repo.dart';
 import 'package:frontend/models/products_model.dart';
 import 'package:get/get.dart';
@@ -13,8 +15,11 @@ class CartController extends GetxController {
   Map<int, CartModel> get items => _items;
 
   void addItem(ProductModel product, int quantity) {
+    var totalQuantity = 0;
     if (_items.containsKey(product.id!)) {
       _items.update(product.id!, (value) {
+        totalQuantity = value.quantity! + quantity;
+
         return CartModel(
           id: value.id,
           name: value.name,
@@ -25,6 +30,10 @@ class CartController extends GetxController {
           time: DateTime.now().toString(),
         );
       });
+
+      if (totalQuantity <= 0) {
+        _items.remove(product.id);
+      }
     } else {
       if (quantity > 0) {
         _items.putIfAbsent(
@@ -70,5 +79,13 @@ class CartController extends GetxController {
       });
     }
     return quantity;
+  }
+
+  int get totalItems {
+    var totalQuantity = 0;
+    _items.forEach((key, value) {
+      totalQuantity += value.quantity!;
+    });
+    return totalQuantity;
   }
 }
