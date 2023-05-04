@@ -146,7 +146,7 @@ class CartPage extends StatelessWidget {
                                                 BigText(
                                                     text: _cartList[index]
                                                         .quantity
-                                                        .toString()), //popularProduct.inCartItems.toString()),
+                                                        .toString()), 
                                                 SizedBox(
                                                     width:
                                                         Dimensions.width10 / 2),
