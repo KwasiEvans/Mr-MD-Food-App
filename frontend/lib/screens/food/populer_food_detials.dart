@@ -60,39 +60,42 @@ class PopularFoodDtails extends StatelessWidget {
                         },
                         child: const AppIcon(icon: Icons.arrow_back_ios)),
                     GetBuilder<PopularProductController>(builder: (controller) {
-                      return Stack(
-                        children: [
-                          const AppIcon(icon: Icons.shopping_cart_outlined),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed(RouteHelper.getCartPage());
-                                    },
-                                    child: const AppIcon(
+                      return GestureDetector(
+                        onTap: () {
+                          if (controller.totalItems >= 1)
+                            // ignore: curly_braces_in_flow_control_structures
+                            Get.toNamed(RouteHelper.getCartPage());
+                        },
+                        child: Stack(
+                          children: [
+                            const AppIcon(icon: Icons.shopping_cart_outlined),
+                            controller.totalItems >= 1
+                                ? const Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: AppIcon(
                                       icon: Icons.circle,
                                       size: 20,
                                       iconColor: Colors.transparent,
                                       backgroundColor: AppColors.mainColor,
                                     ),
-                                  ),
-                                )
-                              : Container(),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 4,
-                                  top: 4,
-                                  child: BigText(
-                                      text: Get.find<PopularProductController>()
-                                          .totalItems
-                                          .toString(),
-                                      size: 12,
-                                      color: Colors.white),
-                                )
-                              : Container(),
-                        ],
+                                  )
+                                : Container(),
+                            Get.find<PopularProductController>().totalItems >= 1
+                                ? Positioned(
+                                    right: 4,
+                                    top: 4,
+                                    child: BigText(
+                                        text:
+                                            Get.find<PopularProductController>()
+                                                .totalItems
+                                                .toString(),
+                                        size: 12,
+                                        color: Colors.white),
+                                  )
+                                : Container(),
+                          ],
+                        ),
                       );
                     })
                   ]),
