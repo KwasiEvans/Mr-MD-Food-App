@@ -39,7 +39,7 @@ class PopularProductController extends GetxController {
   void setQuantity(bool isIncrement) {
     if (isIncrement) {
       _quantity = checkQuantity(_quantity + 1);
-      print("number is " + _quantity.toString());
+      // print("number is " + _quantity.toString());
     } else {
       _quantity = checkQuantity(_quantity - 1);
     }
@@ -48,23 +48,26 @@ class PopularProductController extends GetxController {
 
   int checkQuantity(int quantity) {
     if ((_inCartItems + quantity) < 0) {
-      Get.snackbar("Item count", "You can not reduce more");
-      // ignore: unused_label
-      backgroundColor:
-      AppColors.mainColor;
-      // ignore: unused_label
-      colorText:
-      Colors.white;
+      Get.snackbar(
+        "Item count", "You can not reduce more",
+        // ignore: unused_label
+        backgroundColor: AppColors.mainColor,
+        // ignore: unused_label
+        colorText: Colors.white,
+      );
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
-          "Item count", "Food Stock is not available for more than 20");
-      // ignore: unused_label
-      backgroundColor:
-      AppColors.mainColor;
-      // ignore: unused_label
-      colorText:
-      Colors.white;
+        "Item count", "Food Stock is not available for more than 20",
+        // ignore: unused_label
+        backgroundColor: AppColors.mainColor,
+        // ignore: unused_label
+        colorText: Colors.white,
+      );
       return 20;
     } else {
       return quantity;
@@ -79,11 +82,11 @@ class PopularProductController extends GetxController {
     var exist = false;
     exist = _cart.existInCart(product);
     // get from storage set it _inCartItems
-    print("exist or not " + exist.toString());
+    // print("exist or not " + exist.toString());
     if (exist) {
       _inCartItems = _cart.getQuantity(product);
     }
-    print("the quantity in the cart is " + _inCartItems.toString());
+    // print("the quantity in the cart is " + _inCartItems.toString());
   }
 
   void addItem(ProductModel product) {
