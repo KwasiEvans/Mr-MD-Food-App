@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/controllers/popular_product_controller.dart';
 import 'package:frontend/controllers/recomended_product_controller.dart';
 import 'package:frontend/routes/route_helper.dart';
+import 'package:frontend/utils/dimentions.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -47,8 +48,11 @@ class _SplashScreenState extends State<SplashScreen>
           ScaleTransition(
               scale: animation,
               child: Center(
-                  child: Image.asset("assets/images/logo.png", width: 250))),
-          Center(child: Image.asset("assets/images/logo2.jpg", width: 250))
+                  child: Image.asset("assets/images/logo.png",
+                      width: Dimensions.splashImg))),
+          Center(
+              child: Image.asset("assets/images/logo2.jpg",
+                  width: Dimensions.splashImg))
         ],
       ),
     );
