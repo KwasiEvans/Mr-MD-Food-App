@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:frontend/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:frontend/models/cart_model.dart';
 
@@ -11,11 +12,23 @@ class CartRepo {
   void addToCartList(List<CartModel> cartList) {
     cart = [];
     // convert object to string course shared takes on string
-    cartList.forEach((element) {
-      return cart.add(jsonEncode(element));
-    });
 
-    sharedPreferences.setStringList("Cart-list", cart);
-    print(sharedPreferences.getStringList("Cart-list"));
+    cartList.forEach((element) => cart.add(jsonEncode(element)));
+    sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
+    getCartList();
+  }
+
+  List<CartModel> getCartList() {
+    List<String> carts = [];
+    if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
+      carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
+      print("inside getcartList" + carts.toString());
+    }
+    List<CartModel> cartList = [];
+
+    carts.forEach(
+        (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
+
+    return cartList;
   }
 }

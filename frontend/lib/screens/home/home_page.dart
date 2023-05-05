@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
         color: AppColors.signColor,
         onTap: onTapNav,
         items: const [
-          Icon(FontAwesomeIcons.home, color: AppColors.mainColor),
+          Icon(FontAwesomeIcons.home, color: AppColors.iconColor1),
           Icon(FontAwesomeIcons.history, color: AppColors.iconColor1),
           Icon(FontAwesomeIcons.shoppingCart, color: AppColors.iconColor1),
           Icon(FontAwesomeIcons.personBooth, color: AppColors.iconColor1),
