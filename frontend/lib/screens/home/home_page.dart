@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       body: pages[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
         height: 50,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         color: AppColors.signColor,
         onTap: onTapNav,
         items: const [
