@@ -1,7 +1,7 @@
 import 'package:frontend/screens/cart/cart_page.dart';
 import 'package:frontend/screens/food/populer_food_detials.dart';
 import 'package:frontend/screens/food/recomended_food_details.dart';
-import 'package:frontend/screens/home/main_page.dart';
+import 'package:frontend/screens/home/home_page.dart';
 import 'package:get/get.dart';
 
 class RouteHelper {
@@ -21,7 +21,7 @@ class RouteHelper {
     // Getting home page
     GetPage(
         name: initial,
-        page: () => const MainPage(),
+        page: () => const HomePage(),
         transition: Transition.fadeIn),
     // Getting popula food
     GetPage(
@@ -29,7 +29,7 @@ class RouteHelper {
       page: () {
         var pageId = Get.parameters['pageId'];
         var page = Get.parameters["page"];
-        return PopularFoodDtails(pageId: int.parse(pageId!), page:page!);
+        return PopularFoodDtails(pageId: int.parse(pageId!), page: page!);
       },
       transition: Transition.fade,
     ),
@@ -37,8 +37,8 @@ class RouteHelper {
       name: recomendedFood,
       page: () {
         var pageId = Get.parameters['pageId'];
-          var page = Get.parameters["page"];
-        return RecomendedFoodDetail(pageId: int.parse(pageId!), page:page!);
+        var page = Get.parameters["page"];
+        return RecomendedFoodDetail(pageId: int.parse(pageId!), page: page!);
       },
       transition: Transition.cupertino,
     ),

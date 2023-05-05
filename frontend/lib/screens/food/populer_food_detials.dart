@@ -202,7 +202,7 @@ class PopularFoodDtails extends StatelessWidget {
 
                     // ignore: sort_child_properties_last
                     child: BigText(
-                      text: "GH₵${product.price!} | Add to cart",
+                      text: "Order for GH₵${product.price!}",
                       color: Colors.white,
                     ),
                     decoration: BoxDecoration(
