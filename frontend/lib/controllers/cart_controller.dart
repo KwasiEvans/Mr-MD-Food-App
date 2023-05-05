@@ -98,4 +98,13 @@ class CartController extends GetxController {
       return e.value;
     }).toList();
   }
+
+  // Getting the sum total of all product purcahsed
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      total += value.quantity! * value.price!;
+    });
+    return total;
+  }
 }
