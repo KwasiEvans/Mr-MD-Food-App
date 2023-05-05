@@ -83,15 +83,13 @@ class CartPage extends StatelessWidget {
                                           .popularProductList
                                           .indexOf(_cartList[index].product!);
                                   if (popularIndex >= 0) {
-                                    Get.toNamed(RouteHelper.getPopularFood(
-                                        popularIndex));
+                                      Get.toNamed(RouteHelper.getPopularFood(popularIndex,"cartpage"));
                                   } else {
                                     var recomendedIndex =
                                         Get.find<RecomendedProductController>()
                                             .recomendedProductList
                                             .indexOf(_cartList[index].product!);
-                                    Get.toNamed(RouteHelper.getRecomendedFood(
-                                        recomendedIndex));
+                                    Get.toNamed(RouteHelper.getRecomendedFood(recomendedIndex));
                                   }
                                 },
                                 child: Container(

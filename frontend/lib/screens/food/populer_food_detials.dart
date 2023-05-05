@@ -15,9 +15,11 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class PopularFoodDtails extends StatelessWidget {
   int pageId;
+  final String page;
   PopularFoodDtails({
     Key? key,
     required this.pageId,
+    required this.page,
   }) : super(key: key);
 
   @override
@@ -56,7 +58,11 @@ class PopularFoodDtails extends StatelessWidget {
                   children: [
                     GestureDetector(
                         onTap: () {
-                          Get.toNamed(RouteHelper.getInitial());
+                          if (page == "cartpage") {
+                            Get.toNamed(RouteHelper.getCartPage());
+                          } else {
+                            Get.toNamed(RouteHelper.getInitial());
+                          }
                         },
                         child: const AppIcon(icon: Icons.arrow_back_ios)),
                     GetBuilder<PopularProductController>(builder: (controller) {
