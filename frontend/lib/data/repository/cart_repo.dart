@@ -9,7 +9,23 @@ class CartRepo {
   CartRepo({required this.sharedPreferences});
 
   List<String> cart = [];
+  List<String> cartHistory = [];
+
+  List<CartModel> getCartHistoryList() {
+    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY)) {
+      cartHistory = [];
+      cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY)!;
+    }
+
+    List<CartModel> cartListHistory = [];
+    cartHistory.forEach((element) =>
+        cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
+    return cartListHistory;
+  }
+
   void addToCartList(List<CartModel> cartList) {
+    // sharedPreferences.remove(AppConstants.CART_LIST);
+    // sharedPreferences.remove(AppConstants.CART_HISTORY);
     cart = [];
     // convert object to string course shared takes on string
 
@@ -30,5 +46,23 @@ class CartRepo {
         (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
 
     return cartList;
+  }
+
+  void addToCartHistoryList() {
+    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY)) {
+      cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY)!;
+    }
+    for (int i = 0; i < cart.length; i++) {
+      //print("history list " + cart[i]);
+      cartHistory.add(cart[i]);
+    }
+    removeCart();
+    sharedPreferences.setStringList(AppConstants.CART_HISTORY, cartHistory);
+    print("The lenght of history list is " +
+        getCartHistoryList().length.toString());
+  }
+
+  void removeCart() {
+    sharedPreferences.remove(AppConstants.CART_LIST);
   }
 }

@@ -15,5 +15,8 @@ class AppConstants {
 
   // ignore: constant_identifier_names
   static const String UPLOAD_URL = "/uploads/";
+  // ignore: constant_identifier_names
   static const String CART_LIST = "cart-list";
+  // ignore: constant_identifier_names
+  static const String CART_HISTORY = "cart-history-list";
 }
