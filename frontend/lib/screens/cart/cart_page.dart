@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/controllers/cart_controller.dart';
+import 'package:frontend/controllers/popular_product_controller.dart';
+import 'package:frontend/controllers/recomended_product_controller.dart';
 import 'package:frontend/routes/route_helper.dart';
 import 'package:frontend/utils/app_constants.dart';
 import 'package:frontend/utils/colors.dart';
@@ -74,23 +76,42 @@ class CartPage extends StatelessWidget {
                           height: Dimensions.height20 * 5,
                           child: Row(
                             children: [
-                              Container(
-                                width: Dimensions.height20 * 5,
-                                height: Dimensions.height20 * 5,
-                                margin: EdgeInsets.only(
-                                    bottom: Dimensions.height10),
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: NetworkImage(
-                                      AppConstants.BASE_URL +
-                                          AppConstants.UPLOAD_URL +
-                                          cartController.getItems[index].img!,
+                              GestureDetector(
+                                onTap: () {
+                                  var popularIndex =
+                                      Get.find<PopularProductController>()
+                                          .popularProductList
+                                          .indexOf(_cartList[index].product!);
+                                  if (popularIndex >= 0) {
+                                    Get.toNamed(RouteHelper.getPopularFood(
+                                        popularIndex));
+                                  } else {
+                                    var recomendedIndex =
+                                        Get.find<RecomendedProductController>()
+                                            .recomendedProductList
+                                            .indexOf(_cartList[index].product!);
+                                    Get.toNamed(RouteHelper.getRecomendedFood(
+                                        recomendedIndex));
+                                  }
+                                },
+                                child: Container(
+                                  width: Dimensions.height20 * 5,
+                                  height: Dimensions.height20 * 5,
+                                  margin: EdgeInsets.only(
+                                      bottom: Dimensions.height10),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        AppConstants.BASE_URL +
+                                            AppConstants.UPLOAD_URL +
+                                            cartController.getItems[index].img!,
+                                      ),
                                     ),
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius20),
+                                    color: Colors.white,
                                   ),
-                                  borderRadius: BorderRadius.circular(
-                                      Dimensions.radius20),
-                                  color: Colors.white,
                                 ),
                               ),
                               SizedBox(width: Dimensions.width10),
