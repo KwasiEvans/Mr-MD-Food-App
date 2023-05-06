@@ -15,7 +15,9 @@ class CartHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var getCartHistoryList = Get.find<CartController>().getCartHistoryList();
+    var getCartHistoryList =
+        Get.find<CartController>().getCartHistoryList().reversed.toList();
+    // ignore: prefer_collection_literals
     Map<String, int> cartItemsPerOrder = Map();
 
     for (int i = 0; i < getCartHistoryList.length; i++) {
@@ -33,15 +35,16 @@ class CartHistory extends StatelessWidget {
 
     List<int> itemsPerOrder = cartOrderTimeToList();
 
+    // ignore: non_constant_identifier_names
     var ListCounter = 0;
 
     return Scaffold(
       body: Column(children: [
         Container(
-          height: 66,
+          height: Dimensions.height10 * 7,
           color: AppColors.mainColor,
           width: double.maxFinite,
-          padding: const EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: Dimensions.height10),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             BigText(text: "Cart History", color: Colors.white),
@@ -65,7 +68,7 @@ class CartHistory extends StatelessWidget {
                 children: [
                   for (int i = 0; i < itemsPerOrder.length; i++)
                     Container(
-                      height: 120,
+                      height: Dimensions.height30 * 4,
                       margin: EdgeInsets.only(bottom: Dimensions.height20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,8 +98,8 @@ class CartHistory extends StatelessWidget {
                                     }
                                     return index <= 2
                                         ? Container(
-                                            height: 80,
-                                            width: 80,
+                                            height: Dimensions.height20 * 4,
+                                            width: Dimensions.height20 * 4,
                                             margin: EdgeInsets.only(
                                                 right: Dimensions.width10 / 2),
                                             decoration: BoxDecoration(
@@ -119,7 +122,7 @@ class CartHistory extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                height: 80,
+                                height: Dimensions.height20 * 4,
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
