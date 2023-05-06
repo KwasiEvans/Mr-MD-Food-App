@@ -8,6 +8,7 @@ import 'package:frontend/widgets/app_icon.dart';
 import 'package:frontend/widgets/big_text.dart';
 import 'package:frontend/widgets/small_text.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CartHistory extends StatelessWidget {
   const CartHistory({super.key});
@@ -69,7 +70,16 @@ class CartHistory extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          
+                          (() {
+                            DateTime parseDate =
+                                DateFormat("yyyy-MM-dd HH:mm:ss").parse(
+                                    getCartHistoryList[ListCounter].time!);
+                            var inputDate =
+                                DateTime.parse(parseDate.toString());
+                            var outputFormat = DateFormat("dd/MM/yyyy hh:mm a");
+                            var outputDate = outputFormat.format(inputDate);
+                            return BigText(text: outputDate);
+                          }()),
                           SizedBox(height: Dimensions.height10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
