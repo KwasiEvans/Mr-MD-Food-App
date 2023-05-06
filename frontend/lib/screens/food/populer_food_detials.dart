@@ -68,9 +68,9 @@ class PopularFoodDtails extends StatelessWidget {
                   GetBuilder<PopularProductController>(builder: (controller) {
                     return GestureDetector(
                       onTap: () {
-                        if (controller.totalItems >= 1)
-                          // ignore: curly_braces_in_flow_control_structures
-                          Get.toNamed(RouteHelper.getCartPage());
+                        // if (controller.totalItems >= 1)
+                        // ignore: curly_braces_in_flow_control_structures
+                        Get.toNamed(RouteHelper.getCartPage());
                       },
                       child: Stack(
                         children: [
