@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/screens/cart/cart_history.dart';
 import 'package:frontend/screens/home/main_page.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/dimentions.dart';
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     const MainPage(),
     // Container(child: Center(child: Text("Am next1"))),
     Container(child: Center(child: Text("Am next2"))),
-    Container(child: Center(child: Text("Am next3"))),
+    const CartHistory(),
     Container(child: Center(child: Text("Am next4"))),
   ];
 
