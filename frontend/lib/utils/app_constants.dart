@@ -5,7 +5,7 @@ class AppConstants {
   static const int APP_VERSION = 1;
 
   // ignore: constant_identifier_names
-  static const String BASE_URL = "http://mvs.bslmeiyu.com";
+  static const String BASE_URL = "http://10.0.2.2:8000";
   // ignore: constant_identifier_names
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   // ignore: constant_identifier_names
