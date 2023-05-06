@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/controllers/cart_controller.dart';
+import 'package:frontend/utils/app_constants.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_icon.dart';
 import 'package:frontend/widgets/big_text.dart';
+import 'package:frontend/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 class CartHistory extends StatelessWidget {
@@ -55,31 +57,96 @@ class CartHistory extends StatelessWidget {
                 top: Dimensions.height20,
                 left: Dimensions.width20,
                 right: Dimensions.width20),
-            child: ListView(
-              children: [
-                for (int i = 0; i < itemsPerOrder.length; i++)
-                  Container(
-                    margin: EdgeInsets.only(bottom: Dimensions.height20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BigText(text: "05/05/2023"),
-                        Row(
-                          children: [
-                            Wrap(
+            child: MediaQuery.removePadding(
+              removeTop: true,
+              context: context,
+              child: ListView(
+                children: [
+                  for (int i = 0; i < itemsPerOrder.length; i++)
+                    Container(
+                      height: 120,
+                      margin: EdgeInsets.only(bottom: Dimensions.height20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          
+                          SizedBox(height: Dimensions.height10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Wrap(
                                 direction: Axis.horizontal,
-                                children:
-                                    List.generate(itemsPerOrder[i], (index) {
-                                  return Container(
-                                    child: Text("Hello"),
-                                  );
-                                })),
-                          ],
-                        ),
-                      ],
+                                children: List.generate(
+                                  itemsPerOrder[i],
+                                  (index) {
+                                    if (ListCounter <
+                                        getCartHistoryList.length) {
+                                      ListCounter++;
+                                    }
+                                    return index <= 2
+                                        ? Container(
+                                            height: 80,
+                                            width: 80,
+                                            margin: EdgeInsets.only(
+                                                right: Dimensions.width10 / 2),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      Dimensions.radius15 / 2),
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: NetworkImage(AppConstants
+                                                        .BASE_URL +
+                                                    AppConstants.UPLOAD_URL +
+                                                    getCartHistoryList[
+                                                            ListCounter - 1]
+                                                        .img!),
+                                              ),
+                                            ),
+                                          )
+                                        : Container();
+                                  },
+                                ),
+                              ),
+                              Container(
+                                height: 80,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    SmallText(
+                                        text: "Total",
+                                        color: AppColors.titleColor),
+                                    BigText(
+                                      text: "${itemsPerOrder[i]} Items",
+                                      color: AppColors.titleColor,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: Dimensions.width10,
+                                          vertical: Dimensions.height10 / 2),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius15 / 3),
+                                          border: Border.all(
+                                              width: 1,
+                                              color: AppColors.mainColor)),
+                                      child: SmallText(
+                                        text: "one more",
+                                        color: AppColors.titleColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
         )
