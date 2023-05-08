@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/base/show_custom_snackbar.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_text_field.dart';
 import 'package:frontend/widgets/big_text.dart';
@@ -21,6 +22,33 @@ class SignUpPage extends StatelessWidget {
 
     // Account images
     var signUpImages = ["twitter.png", "apple.png", "google.png"];
+
+    void _registration() {
+      String name = nameController.text.trim();
+      String phone = phoneController.text.trim();
+      String email = emailController.text.trim();
+      String password = passwordController.text.trim();
+
+      // validation
+      if (name.isEmpty) {
+        showCustomSnackBar("Enter your name", title: "Name");
+      } else if (phone.isEmpty) {
+        showCustomSnackBar("Enter your phone number", title: "Phone Number");
+      } else if (email.isEmpty) {
+        showCustomSnackBar("Enter your email", title: "Email Address");
+      } else if (!GetUtils.isEmail(email)) {
+        showCustomSnackBar("Enter your valid email address",
+            title: "Valid Email Address");
+      } else if (password.isEmpty) {
+        showCustomSnackBar("Enter your password", title: "Password");
+      } else if (password.length < 6) {
+        showCustomSnackBar("Password can not be less than 6 charaters",
+            title: "Password");
+      } else {
+        showCustomSnackBar("Sucessfull", title: "Perfect");
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -62,18 +90,23 @@ class SignUpPage extends StatelessWidget {
               icon: LineAwesomeIcons.mobile_phone,
             ),
             SizedBox(height: Dimensions.height20),
-            Container(
-              width: Dimensions.screenWidth / 2,
-              height: Dimensions.screenHeight / 13,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius15),
-                color: AppColors.mainColor,
-              ),
-              child: Center(
-                child: BigText(
-                  text: "Sign up",
-                  size: Dimensions.font20 + Dimensions.font20 / 2,
-                  color: Colors.white,
+            GestureDetector(
+              onTap: () {
+                _registration();
+              },
+              child: Container(
+                width: Dimensions.screenWidth / 2,
+                height: Dimensions.screenHeight / 13,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius15),
+                  color: AppColors.mainColor,
+                ),
+                child: Center(
+                  child: BigText(
+                    text: "Sign up",
+                    size: Dimensions.font20 + Dimensions.font20 / 2,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
