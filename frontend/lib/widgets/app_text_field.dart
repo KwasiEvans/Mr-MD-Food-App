@@ -33,8 +33,7 @@ class AppTextField extends StatelessWidget {
         controller: textEditingController,
         decoration: InputDecoration(
           hintText: hintText,
-          prefixIcon: const Icon(FontAwesomeIcons.mailBulk,
-              color: AppColors.yellowColor),
+          prefixIcon: Icon(icon, color: AppColors.iconColor2),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Dimensions.radius30),
             borderSide: const BorderSide(width: 1.0, color: Colors.white),

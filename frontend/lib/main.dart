@@ -3,6 +3,7 @@ import 'package:frontend/controllers/cart_controller.dart';
 import 'package:frontend/controllers/popular_product_controller.dart';
 import 'package:frontend/controllers/recomended_product_controller.dart';
 import 'package:frontend/routes/route_helper.dart';
+import 'package:frontend/screens/auth/sign_in_page.dart';
 import 'package:frontend/screens/auth/sign_up_page.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'MR MD',
-            home: const SignUpPage(),
+            home: const SignInPage(),
             //initialRoute: RouteHelper.getSplashPage(),
             //getPages: RouteHelper.routes,
           );
