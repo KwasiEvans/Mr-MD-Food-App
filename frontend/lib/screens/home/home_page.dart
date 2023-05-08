@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/screens/account/account_page.dart';
 import 'package:frontend/screens/cart/cart_history.dart';
 import 'package:frontend/screens/home/main_page.dart';
 import 'package:frontend/utils/colors.dart';
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     // Container(child: Center(child: Text("Am next1"))),
     Container(child: Center(child: Text("Am next2"))),
     const CartHistory(),
-    Container(child: Center(child: Text("Am next4"))),
+    const AccountPage(),
   ];
 
   void onTapNav(int index) {
