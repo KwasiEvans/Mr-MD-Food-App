@@ -14,6 +14,7 @@ class AccountPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.mainColor,
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: BigText(
           text: "Account Info",
