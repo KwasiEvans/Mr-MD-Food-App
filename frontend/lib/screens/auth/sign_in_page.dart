@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/screens/auth/sign_up_page.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_text_field.dart';
 import 'package:frontend/widgets/big_text.dart';
@@ -33,19 +34,31 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: Dimensions.height20),
             Container(
               margin: EdgeInsets.only(left: Dimensions.width20),
-              child: Column(children: [
-                Text(
-                  "Welcome back",
-                  style: TextStyle(
-                    fontSize: Dimensions.font20 * 2,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.mainColor,
-                  ),
-                )
-              ]),
+              width: double.maxFinite,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Welcome back",
+                      style: TextStyle(
+                        fontSize: Dimensions.font20 * 2,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.mainColor,
+                      ),
+                    ),
+                    Text(
+                      "Sign in to continue",
+                      style: TextStyle(
+                        fontSize: Dimensions.font20,
+                        color: AppColors.paraColor,
+                      ),
+                    ),
+                  ]),
             ),
+            SizedBox(height: Dimensions.height20),
             AppTextField(
               textEditingController: emailController,
               hintText: "Email",
@@ -58,6 +71,22 @@ class SignInPage extends StatelessWidget {
               icon: FontAwesomeIcons.userLock,
             ),
             SizedBox(height: Dimensions.height20),
+            Row(
+              children: [
+                Expanded(child: Container()),
+                RichText(
+                  text: TextSpan(
+                    text: "Sign into your account",
+                    style: TextStyle(
+                        color: Colors.grey[500], fontSize: Dimensions.font16),
+                  ),
+                ),
+                SizedBox(
+                  width: Dimensions.width10,
+                )
+              ],
+            ),
+            SizedBox(height: Dimensions.height10),
             Container(
               width: Dimensions.screenWidth / 2,
               height: Dimensions.screenHeight / 13,
@@ -67,26 +96,33 @@ class SignInPage extends StatelessWidget {
               ),
               child: Center(
                 child: BigText(
-                  text: "Sign up",
+                  text: "Sign in",
                   size: Dimensions.font20 + Dimensions.font20 / 2,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(height: Dimensions.height10),
-            RichText(
-              text: TextSpan(
-                text: "Sign into your account",
-                style: TextStyle(
-                    color: Colors.grey[500], fontSize: Dimensions.font16),
-              ),
-            ),
             SizedBox(height: Dimensions.screenHeight * 0.05),
             RichText(
               text: TextSpan(
-                text: "Or, Sign up with following account",
+                // ignore: unnecessary_string_escapes
+                text: "Don\'t have account?",
                 style: TextStyle(
-                    color: Colors.grey[500], fontSize: Dimensions.font16 - 5),
+                  color: Colors.grey[500],
+                  fontSize: Dimensions.font16,
+                ),
+                children: [
+                  TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => Get.to(const SignUpPage()),
+                    text: " Creat Account.",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: Dimensions.font16,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
