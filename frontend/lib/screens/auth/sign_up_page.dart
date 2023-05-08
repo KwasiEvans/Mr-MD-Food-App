@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/base/show_custom_snackbar.dart';
+import 'package:frontend/models/signup_model.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_text_field.dart';
 import 'package:frontend/widgets/big_text.dart';
@@ -46,6 +47,13 @@ class SignUpPage extends StatelessWidget {
             title: "Password");
       } else {
         showCustomSnackBar("Sucessfull", title: "Perfect");
+        SignUpModel signUpModel = SignUpModel(
+          name: name,
+          phone: phone,
+          email: email,
+          password: password,
+        );
+        print(signUpModel.toString());
       }
     }
 
