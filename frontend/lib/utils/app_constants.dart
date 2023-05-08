@@ -11,6 +11,8 @@ class AppConstants {
   // ignore: constant_identifier_names
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   // ignore: constant_identifier_names
+  static const String Drinks = "/api/v1/products/drinks";
+  // ignore: constant_identifier_names
   static const String TOKEN = "MDtoken";
 
   // ignore: constant_identifier_names
