@@ -7,11 +7,13 @@ class AppTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hintText;
   final IconData icon;
-  const AppTextField({
+  bool isObscure;
+  AppTextField({
     Key? key,
     required this.textEditingController,
     required this.hintText,
     required this.icon,
+    this.isObscure = false,
   }) : super(key: key);
 
   @override
@@ -24,12 +26,13 @@ class AppTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(Dimensions.radius15),
           boxShadow: [
             BoxShadow(
-                blurRadius: 10,
-                spreadRadius: 7,
-                offset: const Offset(1, 10),
+                blurRadius: 3,
+                spreadRadius: 1,
+                offset: const Offset(1, 1),
                 color: Colors.grey.withOpacity(0.2))
           ]),
       child: TextField(
+        obscureText: isObscure ? true : false,
         controller: textEditingController,
         decoration: InputDecoration(
           hintText: hintText,
