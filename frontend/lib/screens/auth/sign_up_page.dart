@@ -5,6 +5,7 @@ import 'package:frontend/base/custorm_loader.dart';
 import 'package:frontend/base/show_custom_snackbar.dart';
 import 'package:frontend/controllers/auth_controller.dart';
 import 'package:frontend/models/signup_model.dart';
+import 'package:frontend/screens/auth/sign_in_page.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_text_field.dart';
 import 'package:frontend/widgets/big_text.dart';
@@ -57,7 +58,7 @@ class SignUpPage extends StatelessWidget {
         );
         authController.registration(signUpModel).then((status) {
           if (status.isSuccess) {
-            print("Sucessfull registration");
+            Get.to(const SignInPage());
           } else {
             showCustomSnackBar(status.message);
           }

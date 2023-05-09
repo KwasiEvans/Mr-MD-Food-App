@@ -12,6 +12,8 @@ import 'package:frontend/widgets/big_text.dart';
 import 'package:frontend/widgets/small_text.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/auth_controller.dart';
+
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
@@ -281,7 +283,11 @@ class CartPage extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          cartController.addToHistory();
+                          if (Get.find<AuthController>().userLoggedIn()) {
+                            cartController.addToHistory();
+                          } else {
+                            Get.toNamed(RouteHelper.signIn);
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.only(
