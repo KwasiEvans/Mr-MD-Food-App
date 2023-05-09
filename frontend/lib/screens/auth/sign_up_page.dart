@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/base/show_custom_snackbar.dart';
+import 'package:frontend/controllers/auth_controller.dart';
 import 'package:frontend/models/signup_model.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/app_text_field.dart';
@@ -25,6 +26,7 @@ class SignUpPage extends StatelessWidget {
     var signUpImages = ["twitter.png", "apple.png", "google.png"];
 
     void _registration() {
+      var authController = Get.find<AuthController>();
       String name = nameController.text.trim();
       String phone = phoneController.text.trim();
       String email = emailController.text.trim();
@@ -53,7 +55,13 @@ class SignUpPage extends StatelessWidget {
           email: email,
           password: password,
         );
-        print(signUpModel.toString());
+        authController.registration(signUpModel).then((status) {
+          if (status.isSuccess) {
+            print("Sucessfull registration");
+          } else {
+            showCustomSnackBar(status.message);
+          }
+        });
       }
     }
 

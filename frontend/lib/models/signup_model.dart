@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 class SignUpModel {
   String name;
   String phone;
@@ -12,6 +11,15 @@ class SignUpModel {
     required this.email,
     required this.password,
   });
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data["f_name"] = name;
+    data["phone"] = phone;
+    data["email"] = email;
+    data["password"] = password;
+    return data;
+  }
 
   // SignUpModel copyWith({
   //   String? name,
@@ -25,15 +33,6 @@ class SignUpModel {
   //     email: email ?? this.email,
   //     password: password ?? this.password,
   //   );
-  // }
-
-  // Map<String, dynamic> toMap() {
-  //   return <String, dynamic>{
-  //     'name': name,
-  //     'phone': phone,
-  //     'email': email,
-  //     'password': password,
-  //   };
   // }
 
   // factory SignUpModel.fromMap(Map<String, dynamic> map) {
@@ -57,7 +56,7 @@ class SignUpModel {
   // @override
   // bool operator ==(Object other) {
   //   if (identical(this, other)) return true;
-  
+
   //   return other is SignUpModel &&
   //     other.name == name &&
   //     other.phone == phone &&

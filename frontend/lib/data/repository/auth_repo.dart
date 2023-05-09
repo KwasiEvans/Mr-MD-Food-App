@@ -1,5 +1,7 @@
 import 'package:frontend/data/api/api_client.dart';
 import 'package:frontend/models/signup_model.dart';
+import 'package:frontend/utils/app_constants.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
@@ -10,12 +12,14 @@ class AuthRepo {
     required this.sharedPreferences,
   });
 
-  // ignore: prefer_final_fields
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
+  Future<Response> registration(SignUpModel signUpModel) async {
+    return await apiClient.postData(
+        AppConstants.REGISTRATION_URL, signUpModel.toJson());
+  }
 
-  registration(SignUpModel signUpModel){
-     _isLoading = true;
-     
+  saveUserToken(String token) async {
+    apiClient.token = token;
+    apiClient.updateHeader(token);
+    return await sharedPreferences.setString(AppConstants.TOKEN, token);
   }
 }

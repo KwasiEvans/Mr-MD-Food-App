@@ -16,6 +16,9 @@ class AppConstants {
   static const String TOKEN = "MDtoken";
 
   // ignore: constant_identifier_names
+  static const String REGISTRATION_URL = "/api/v1/auth/register";
+
+  // ignore: constant_identifier_names
   static const String UPLOAD_URL = "/uploads/";
   // ignore: constant_identifier_names
   static const String CART_LIST = "cart-list";
