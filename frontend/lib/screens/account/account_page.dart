@@ -22,6 +22,7 @@ class AccountPage extends StatelessWidget {
       Get.find<UserController>().getUserInfo();
     }
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
           automaticallyImplyLeading: false,
@@ -138,7 +139,49 @@ class AccountPage extends StatelessWidget {
                       ),
                     )
                   : const CustomLoader())
-              : Container();
+              : Container(
+                  child: Center(
+                      child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: double.maxFinite,
+                      height: Dimensions.height20 * 20,
+                      margin: EdgeInsets.only(
+                          left: Dimensions.width20, right: Dimensions.width20),
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius20),
+                          image: const DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage("assets/images/giphy.gif"),
+                          )),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getSignIn());
+                      },
+                      child: Container(
+                        width: double.maxFinite,
+                        height: Dimensions.height20 * 5,
+                        margin: EdgeInsets.only(
+                            left: Dimensions.width20,
+                            right: Dimensions.width20),
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius20),
+                        ),
+                        child: Center(
+                            child: BigText(
+                          text: "Sign in",
+                          color: Colors.white,
+                          size: Dimensions.font26,
+                        )),
+                      ),
+                    ),
+                  ],
+                )));
         }));
   }
 }
