@@ -33,4 +33,8 @@ class AppConstants {
   static const String CART_LIST = "cart-list";
   // ignore: constant_identifier_names
   static const String CART_HISTORY = "cart-history-list";
+
+  // getting user info
+  // ignore: constant_identifier_names
+  static const String USER_INFO_URI = "/api/v1/customer/info";
 }
