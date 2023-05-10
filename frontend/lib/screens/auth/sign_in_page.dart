@@ -39,7 +39,7 @@ class SignInPage extends StatelessWidget {
       } else {
         authController.login(email, password).then((status) {
           if (status.isSuccess) {
-            Get.to(const SignUpPage());
+            Get.toNamed(RouteHelper.getInitial());
           } else {
             showCustomSnackBar(status.message);
           }

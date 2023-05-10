@@ -25,7 +25,7 @@ class AppConstants {
   static const String REGISTRATION_URL = "/api/v1/auth/register";
 
   // ignore: constant_identifier_names
-  static const String LOGIN_URL = "/api/v1/auth/login";
+  static const String LOGIN_URI = "/api/v1/auth/login";
 
   // ignore: constant_identifier_names
   static const String UPLOAD_URL = "/uploads/";

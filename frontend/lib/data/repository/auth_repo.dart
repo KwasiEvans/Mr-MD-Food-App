@@ -15,9 +15,17 @@ class AuthRepo {
         AppConstants.REGISTRATION_URL, signUpModel.toJson());
   }
 
+    Future<String> getUserToken() async {
+    return await sharedPreferences.getString(AppConstants.TOKEN)??"None is inside me";
+  }
+
+  bool userLoggedIn() {
+    return sharedPreferences.containsKey(AppConstants.TOKEN);
+  }
+
   Future<Response> login(String email, String password) async {
     return await apiClient.postData(
-      AppConstants.LOGIN_URL,
+      AppConstants.LOGIN_URI,
       {"email": email, "password": password},
     );
   }

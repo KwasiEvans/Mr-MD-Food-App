@@ -19,7 +19,8 @@ class AuthController extends GetxController implements GetxService {
       authRepo.saveUserToken(response.body["token"]);
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
-      responseModel = ResponseModel(false, response.statusText!);
+      responseModel =
+          ResponseModel(false, "This email already exist in our records");
     }
     _isLoading = false;
     update();
@@ -35,19 +36,19 @@ class AuthController extends GetxController implements GetxService {
       authRepo.saveUserToken(response.body["token"]);
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
-      responseModel = ResponseModel(false, response.statusText!);
+      responseModel =
+          ResponseModel(false, "Your credentials are not found in our records");
     }
     _isLoading = false;
     update();
     return responseModel;
   }
 
-  Future<void> saveUserNumberAndPassword(String number, String password) async {
-    try {
-      authRepo.saveUserNumberAndPassword(number, password);
-    } catch (e) {
-      // ignore: use_rethrow_when_possible
-      throw e;
-    }
+  saveUserNumberAndPassword(String number, String password) {
+    authRepo.saveUserNumberAndPassword(number, password);
+  }
+
+  bool userLoggedIn() {
+    return authRepo.userLoggedIn();
   }
 }
