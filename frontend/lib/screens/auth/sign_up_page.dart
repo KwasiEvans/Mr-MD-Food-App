@@ -49,7 +49,8 @@ class SignUpPage extends StatelessWidget {
         showCustomSnackBar("Password can not be less than 6 charaters",
             title: "Password");
       } else {
-        showCustomSnackBar("Sucessfull", title: "Perfect");
+        showCustomSnackBar("well done preceeding to registration",
+            title: "Perfect");
         SignUpModel signUpModel = SignUpModel(
           name: name,
           phone: phone,

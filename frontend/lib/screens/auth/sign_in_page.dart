@@ -21,31 +21,31 @@ class SignInPage extends StatelessWidget {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
 
-    void _login(AuthController authController) {
-      String email = emailController.text.trim();
-      String password = passwordController.text.trim();
+    // void _login(AuthController authController) {
+    //   String email = emailController.text.trim();
+    //   String password = passwordController.text.trim();
 
-      // validation
-      if (!GetUtils.isEmail(email)) {
-        showCustomSnackBar("Enter your valid email address",
-            title: "Valid Email Address");
-      } else if (email.isEmpty) {
-        showCustomSnackBar("Enter your email", title: "Email Address");
-      } else if (password.isEmpty) {
-        showCustomSnackBar("Enter your password", title: "Password");
-      } else if (password.length < 6) {
-        showCustomSnackBar("Password can not be less than 6 charaters",
-            title: "Password");
-      } else {
-        authController.login(email, password).then((status) {
-          if (status.isSuccess) {
-            Get.toNamed(RouteHelper.getInitial());
-          } else {
-            showCustomSnackBar(status.message);
-          }
-        });
-      }
-    }
+    //   // validation
+    //   if (!GetUtils.isEmail(email)) {
+    //     showCustomSnackBar("Enter your valid email address",
+    //         title: "Valid Email Address");
+    //   } else if (email.isEmpty) {
+    //     showCustomSnackBar("Enter your email", title: "Email Address");
+    //   } else if (password.isEmpty) {
+    //     showCustomSnackBar("Enter your password", title: "Password");
+    //   } else if (password.length < 6) {
+    //     showCustomSnackBar("Password can not be less than 6 charaters",
+    //         title: "Password");
+    //   } else {
+    //     authController.login(email, password).then((status) {
+    //       if (status.isSuccess) {
+    //         Get.toNamed(RouteHelper.getInitial());
+    //       } else {
+    //         showCustomSnackBar(status.message);
+    //       }
+    //     });
+    //   }
+    // }
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -124,7 +124,7 @@ class SignInPage extends StatelessWidget {
                       SizedBox(height: Dimensions.height10),
                       GestureDetector(
                         onTap: () {
-                          _login(authController);
+                          // _login(authController);
                         },
                         child: Container(
                           width: Dimensions.screenWidth / 2,

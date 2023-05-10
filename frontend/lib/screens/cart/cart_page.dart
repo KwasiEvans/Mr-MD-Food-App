@@ -283,11 +283,11 @@ class CartPage extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if (Get.find<AuthController>().userLoggedIn()) {
-                            cartController.addToHistory();
-                          } else {
-                            Get.toNamed(RouteHelper.signIn);
-                          }
+                          // if (Get.find<AuthController>().userLoggedIn()) {
+                          cartController.addToHistory();
+                          // } else {
+                          //   Get.toNamed(RouteHelper.signIn);
+                          // }
                         },
                         child: Container(
                           padding: EdgeInsets.only(
