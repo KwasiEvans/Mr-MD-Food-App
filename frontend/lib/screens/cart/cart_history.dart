@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/base/no_data_page.dart';
+import 'package:frontend/controllers/auth_controller.dart';
 import 'package:frontend/controllers/cart_controller.dart';
 import 'package:frontend/models/cart_model.dart';
 import 'package:frontend/routes/route_helper.dart';
@@ -70,14 +71,23 @@ class CartHistory extends StatelessWidget {
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             BigText(text: "Cart History", color: Colors.white),
-            const AppIcon(
-              icon: FontAwesomeIcons.shoppingCart,
-              iconColor: AppColors.mainColor,
-              backgroundColor: AppColors.yellowColor,
+            GestureDetector(
+              onTap: () {
+                if (Get.find<AuthController>().userLoggedIn()) {
+                  Get.find<CartController>().clear();
+                  Get.find<CartController>().clearCartHistory();
+                }
+              },
+              child: const AppIcon(
+                icon: FontAwesomeIcons.trash,
+                iconColor: Colors.white,
+                backgroundColor: Colors.red,
+              ),
             )
           ]),
         ),
         GetBuilder<CartController>(builder: (_cartController) {
+          // ignore: prefer_is_empty
           return _cartController.getCartHistoryList().length > 0
               ? Expanded(
                   child: Container(

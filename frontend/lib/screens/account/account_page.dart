@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/controllers/auth_controller.dart';
+import 'package:frontend/controllers/cart_controller.dart';
+import 'package:frontend/routes/route_helper.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/dimentions.dart';
 import 'package:frontend/widgets/account_widget.dart';
 import 'package:frontend/widgets/app_icon.dart';
 import 'package:frontend/widgets/big_text.dart';
+import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class AccountPage extends StatelessWidget {
@@ -39,6 +43,18 @@ class AccountPage extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    // phone
+                    AccountWidget(
+                      appIcon: AppIcon(
+                        icon: LineAwesomeIcons.phone,
+                        backgroundColor: AppColors.iconColor2,
+                        iconColor: Colors.white,
+                        iconSize: Dimensions.height10 * 5 / 2,
+                        size: Dimensions.height10 * 5,
+                      ),
+                      bigText: BigText(text: "0244743739"),
+                    ),
+                    SizedBox(height: Dimensions.height20),
                     // Name
                     AccountWidget(
                       appIcon: AppIcon(
@@ -51,17 +67,7 @@ class AccountPage extends StatelessWidget {
                       bigText: BigText(text: "Kwasi Evans"),
                     ),
                     SizedBox(height: Dimensions.height20),
-                    // phone
-                    AccountWidget(
-                      appIcon: AppIcon(
-                        icon: LineAwesomeIcons.phone,
-                        backgroundColor: AppColors.iconColor2,
-                        iconColor: Colors.white,
-                        iconSize: Dimensions.height10 * 5 / 2,
-                        size: Dimensions.height10 * 5,
-                      ),
-                      bigText: BigText(text: "0244743739"),
-                    ),
+
                     SizedBox(height: Dimensions.height20),
                     // email
                     AccountWidget(
@@ -84,18 +90,28 @@ class AccountPage extends StatelessWidget {
                         iconSize: Dimensions.height10 * 5 / 2,
                         size: Dimensions.height10 * 5,
                       ),
-                      bigText: BigText(text: "Kwasi Evans"),
+                      bigText: BigText(text: "Address"),
                     ),
                     SizedBox(height: Dimensions.height20),
-                    AccountWidget(
-                      appIcon: AppIcon(
-                        icon: LineAwesomeIcons.facebook_messenger,
-                        backgroundColor: Colors.redAccent,
-                        iconColor: Colors.white,
-                        iconSize: Dimensions.height10 * 5 / 2,
-                        size: Dimensions.height10 * 5,
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearShareData();
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+                          Get.offNamed(RouteHelper.getInitial());
+                        }
+                      },
+                      child: AccountWidget(
+                        appIcon: AppIcon(
+                          icon: LineAwesomeIcons.alternate_sign_out,
+                          backgroundColor: Colors.redAccent,
+                          iconColor: Colors.white,
+                          iconSize: Dimensions.height10 * 5 / 2,
+                          size: Dimensions.height10 * 5,
+                        ),
+                        bigText: BigText(text: "Logout"),
                       ),
-                      bigText: BigText(text: "Message"),
                     ),
                     SizedBox(height: Dimensions.height20),
                   ],

@@ -15,8 +15,9 @@ class AuthRepo {
         AppConstants.REGISTRATION_URL, signUpModel.toJson());
   }
 
-    Future<String> getUserToken() async {
-    return await sharedPreferences.getString(AppConstants.TOKEN)??"None is inside me";
+  Future<String> getUserToken() async {
+    return await sharedPreferences.getString(AppConstants.TOKEN) ??
+        "None is inside me";
   }
 
   bool userLoggedIn() {
@@ -44,5 +45,14 @@ class AuthRepo {
       // ignore: use_rethrow_when_possible
       throw e;
     }
+  }
+
+  bool clearShareData() {
+    sharedPreferences.remove(AppConstants.TOKEN);
+    sharedPreferences.remove(AppConstants.PASSWORD);
+    sharedPreferences.remove(AppConstants.PHONE);
+    apiClient.token = '';
+    apiClient.updateHeader('token');
+    return true;
   }
 }
