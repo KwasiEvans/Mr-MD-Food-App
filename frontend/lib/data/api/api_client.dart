@@ -13,7 +13,7 @@ class ApiClient extends GetConnect implements GetxService {
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     baseUrl = appBaseUrl;
     timeout = const Duration(seconds: 30);
-    final token = sharedPreferences.getString(AppConstants.TOKEN);
+    final token = sharedPreferences.getString(AppConstants.TOKEN) ?? "";
 
     _mainHeaders = {
       'Content-type': 'application/json; charset=UTF-8',
