@@ -26,11 +26,13 @@ class LocationController extends GetxController implements GetxService {
 
   late GoogleMapController _mapController;
   bool _updateAddressData = true;
+  bool _changeAddress = true;
+
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
   }
 
-  void updatePosition(CameraPosition position, bool fromAddress) {
+  Future<void> updatePosition(CameraPosition position, bool fromAddress) async {
     if (_updateAddressData) {
       _loading = true;
       update();
@@ -46,10 +48,35 @@ class LocationController extends GetxController implements GetxService {
             speedAccuracy: 1,
             speed: 1,
           );
+        } else {
+          _pickPosition = Position(
+            latitude: position.target.latitude,
+            longitude: position.target.longitude,
+            timestamp: DateTime.now(),
+            heading: 1,
+            accuracy: 1,
+            altitude: 1,
+            speedAccuracy: 1,
+            speed: 1,
+          );
+        }
+        if (_changeAddress) {
+          String _address = await getAddressfromGeoCode(
+            LatLng(
+              position.target.latitude,
+              position.target.longitude,
+            ),
+          );
         }
       } catch (e) {
         print(e);
       }
     }
+  }
+
+  Future<String> getAddressfromGeoCode(LatLng latlng) async {
+    String _address = "Unknown location found";
+    Response response = await loactionRepo.getAddressfromGeoCode(latlng);
+    return _address;
   }
 }

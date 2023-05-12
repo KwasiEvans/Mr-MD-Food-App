@@ -37,4 +37,7 @@ class AppConstants {
   // getting user info
   // ignore: constant_identifier_names
   static const String USER_INFO_URI = "/api/v1/customer/info";
+
+  // ignore: constant_identifier_names
+  static const String GEOCODE_URI = "/api/v1/config/geocode-api";
 }
