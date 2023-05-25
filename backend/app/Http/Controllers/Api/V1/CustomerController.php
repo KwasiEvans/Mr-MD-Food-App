@@ -65,7 +65,7 @@ class CustomerController extends Controller{
         if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
-        /*$point = new Point($request->latitude,$request->latitude);
+        $point = new Point($request->latitude,$request->latitude);
         $zone = Zone::contains('coordinates', $point)->first();
         if(!$zone)
         {
@@ -74,7 +74,7 @@ class CustomerController extends Controller{
             return response()->json([
                 'errors' => $errors
             ], 403);
-        }*/
+        }
         $address = [
             'user_id' => $request->user()->id,
             'contact_person_name' => $request->contact_person_name,

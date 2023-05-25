@@ -29,6 +29,7 @@ class UserController extends AdminController
         // $grid->column('id', __('Id'));
         $grid->id("User ID");
         $grid->column('f_name', __('Name'));
+        $grid->column('phone', __('Phone Number'));
         $grid->column('email', __('Email'));
         // $grid->column('email_verified_at', __('Email verified at'));
         $grid->email_verified_at("Verified")->display(function($verified){
