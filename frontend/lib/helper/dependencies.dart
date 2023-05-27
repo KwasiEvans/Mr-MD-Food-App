@@ -33,7 +33,7 @@ Future<void> init() async {
       () => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(() => UserRepo(apiClient: Get.find()));
   Get.lazyPut(
-      () => LoactionRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+      () => LocationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   // Controller
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
@@ -42,5 +42,5 @@ Future<void> init() async {
   Get.lazyPut(
       () => RecomendedProductController(recomendedProductRepo: Get.find()));
   Get.lazyPut(() => CartController(cartRepo: Get.find()));
-  Get.lazyPut(() => LocationController(loactionRepo: Get.find()));
+  Get.lazyPut(() => LocationController(locationRepo: Get.find()));
 }

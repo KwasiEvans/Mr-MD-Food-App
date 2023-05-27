@@ -23,6 +23,7 @@ class UserController extends GetxController implements GetxService {
       responseModel = ResponseModel(true, "successfully");
     } else {
       responseModel = ResponseModel(false, response.statusText!);
+      print("am not getting shit");
     }
     update();
     return responseModel;

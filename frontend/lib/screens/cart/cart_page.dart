@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/base/no_data_page.dart';
 import 'package:frontend/controllers/cart_controller.dart';
-import 'package:frontend/controllers/location_controller.dart';
 import 'package:frontend/controllers/popular_product_controller.dart';
 import 'package:frontend/controllers/recomended_product_controller.dart';
 import 'package:frontend/routes/route_helper.dart';
@@ -14,6 +13,7 @@ import 'package:frontend/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/auth_controller.dart';
+import '../../controllers/location_controller.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -285,11 +285,9 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           if (Get.find<AuthController>().userLoggedIn()) {
-                            //   cartController.addToHistory();
+                            // cartController.addToHistory();
 
-                            if (Get.find<LocationController>()
-                                .addressList
-                                .isEmpty) {
+                            if (Get.find<LocationController>().addressList.isEmpty) {
                               Get.toNamed(RouteHelper.getAddressPage());
                             }
                           } else {

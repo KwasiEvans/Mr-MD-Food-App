@@ -20,17 +20,17 @@ class AuthController extends GetxController implements GetxService {
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
       responseModel =
-          ResponseModel(false, "This email already exist in our records");
+          ResponseModel(false, "These records already exist in our data");
     }
     _isLoading = false;
     update();
     return responseModel;
   }
 
-  Future<ResponseModel> login(String email, String password) async {
+  Future<ResponseModel> login(String phone, String password) async {
     _isLoading = true;
     update();
-    Response response = await authRepo.login(email, password);
+    Response response = await authRepo.login(phone, password);
     late ResponseModel responseModel;
     if (response.statusCode == 200) {
       authRepo.saveUserToken(response.body["token"]);

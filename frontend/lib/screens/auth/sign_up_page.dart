@@ -86,9 +86,9 @@ class SignUpPage extends StatelessWidget {
                         ),
                       ),
                       AppTextField(
-                        textEditingController: emailController,
-                        hintText: "Email",
-                        icon: FontAwesomeIcons.mailBulk,
+                        textEditingController: phoneController,
+                        hintText: "Phone Number",
+                        icon: LineAwesomeIcons.mobile_phone,
                       ),
                       SizedBox(height: Dimensions.height20),
                       AppTextField(
@@ -105,9 +105,9 @@ class SignUpPage extends StatelessWidget {
                       ),
                       SizedBox(height: Dimensions.height20),
                       AppTextField(
-                        textEditingController: phoneController,
-                        hintText: "Phone Number",
-                        icon: LineAwesomeIcons.mobile_phone,
+                        textEditingController: emailController,
+                        hintText: "Email",
+                        icon: FontAwesomeIcons.mailBulk,
                       ),
                       SizedBox(height: Dimensions.height20),
                       GestureDetector(
